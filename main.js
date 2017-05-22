@@ -18,23 +18,61 @@ function init() {
 	var HTMLBoard = setUpHTMLBoard();
 	grid = HTMLBoard;
 	currentBlock = generateBlock();
+
 	var running = setInterval ( function() {
 		tick(mainBoard, HTMLBoard);
 	}, 200);
 	$(document).keypress(function(event) {
-		if (event.which === 113) {
-			clearInterval(running);
-			console.log('stopped');
-		}
+		handleKeypress(event, running, currentBlock, mainBoard);
 	});
 	// tick(mainBoard, HTMLBoard);
 }
 
+function handleKeypress(event, running, currentBlock, mainBoard) {
+	if (event.which === 113) {
+			clearInterval(running);
+			console.log('stopped');
+		} else {
+			console.log(event.which);
+		}
+		switch(event.which) {
+			case 113: 
+				clearInterval(running);
+				console.log('stopped');
+				break;
+			case 108:
+				moveRight(currentBlock, mainBoard);
+				break;
+			case 106: 
+				moveLeft(currentBlock, mainBoard);
+				break;
+
+		}
+}
+
+function moveLeft(currentBlock, mainBoard) {
+	if (checkBlock (currentBlock, mainBoard, function(block) {
+		block.x -= 1;
+		return block;
+	})) {
+		currentBlock.x -= 1;
+	}
+}
+
+function moveRight(currentBlock, mainBoard) {
+	if (checkBlock(currentBlock, mainBoard, function(block) {
+		block.x += 1;
+		return block;
+	})) {
+		currentBlock.x += 1;
+	}
+}
 function tick(mainBoard, HTMLBoard) {
 	//every tick, the block falls by one
 	var drawing = true;
 	clearBoard(mainBoard);	
 	if (checkBlock(currentBlock, mainBoard, function(block) {
+		// callback function allows us to pass any movement into checkBlock
 		block.y += 1;
 		return block;
 	})) {
@@ -84,7 +122,10 @@ function checkBlock(currentBlock, board, movement) {
 
 	// check block against boundaries of game window
 	var array = block.array;
-	if (block.y + array.length > board.length) {
+	if (block.y + array.length > board.length ||
+		block.y < 0 ||
+		block.x + array[0].length > board[0].length ||
+		block.x < 0) {
 		return false;
 	}
 
