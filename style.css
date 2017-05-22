@@ -1,0 +1,18 @@
+* {
+	margin: 0px;
+}
+li {
+	width: 30px;
+	height: 30px;
+	border: solid black 1px;
+	display: table-cell;
+}
+
+ul {
+	list-style-type: none;
+}
+
+#main {
+	margin-top: 50px;
+	margin-left: 300px;
+}
