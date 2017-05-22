@@ -1,7 +1,5 @@
 $(init)
 
-var grid;
-
 var testArray = [
 	['','#'],
 	['','#'],
@@ -16,7 +14,6 @@ function init() {
 	var mainBoard = generateBoard();
 	console.log(mainBoard)
 	var HTMLBoard = setUpHTMLBoard();
-	grid = HTMLBoard;
 	currentBlock = generateBlock();
 
 	var running = setInterval ( function() {
