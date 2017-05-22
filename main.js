@@ -3,24 +3,30 @@ $(init)
 var grid;
 
 var testArray = [
-	[' ','#',' ',' '],
-	[' ','#','#',' '],
-	[' ','#',' ',' '],
-	[' ','#',' ',' ']
+	['','#'],
+	['','#'],
+	['#',' '],
+	['#',' ']
 ];
 
 var currentBlock;
 
 function init() {
-	console.log('here');
+
 	var mainBoard = generateBoard();
 	console.log(mainBoard)
 	var HTMLBoard = setUpHTMLBoard();
 	grid = HTMLBoard;
 	currentBlock = generateBlock();
-	setInterval ( function() {
+	var running = setInterval ( function() {
 		tick(mainBoard, HTMLBoard);
 	}, 1000);
+	$(document).keypress(function(event) {
+		if (event.which === 113) {
+			clearInterval(running);
+			console.log('stopped');
+		}
+	});
 	// tick(mainBoard, HTMLBoard);
 }
 
@@ -45,7 +51,7 @@ function generateBlock () {
 	//create a new block when old one hits the ground
 	return {
 		x : 0,
-		y : 13,
+		y : 2,
 		array : testArray
 	};
 }
@@ -68,18 +74,29 @@ function placeBlock(block, board) {
 function checkBlock(currentBlock, board) {
 	// checks if there is space below the block for it to fall once
 	currentBlock.y += 1;
+
+	// check block against boundaries of game window
 	var array = currentBlock.array;
 	if (currentBlock.y + array.length > board.length) {
 		currentBlock.y -=1;
 		return false;
 	}
-	// for (var i = 0; i < array.length; i++) {
-	// 	for (var j = 0; j < array[i].length; j++) {
-	// 		// // console.log(x + ', ' + y)
-	// 		// board[x+i][y+j] = array[i][j];
-	// 		// board[x][y] = 'X';
-	// 	}
-	// }
+
+	//check block against previous blocks
+	var x = currentBlock.x;
+	var y = currentBlock.y;
+	for (var i = 0; i < array.length; i++) {
+		for (var j = 0; j < array[i].length; j++) {
+			if (array[i][j] === '#' && board[y + i][x + j] === 'X') {
+				console.log('here');
+				currentBlock.y -= 1;
+				return false;
+			}
+			// // console.log(x + ', ' + y)
+			// board[x+i][y+j] = array[i][j];
+			// board[x][y] = 'X';
+		}
+	}
 	currentBlock.y -= 1;
 	return true;
 }
