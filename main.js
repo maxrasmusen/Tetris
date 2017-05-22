@@ -20,7 +20,7 @@ function init() {
 	currentBlock = generateBlock();
 	var running = setInterval ( function() {
 		tick(mainBoard, HTMLBoard);
-	}, 1000);
+	}, 200);
 	$(document).keypress(function(event) {
 		if (event.which === 113) {
 			clearInterval(running);
@@ -34,7 +34,10 @@ function tick(mainBoard, HTMLBoard) {
 	//every tick, the block falls by one
 	var drawing = true;
 	clearBoard(mainBoard);	
-	if (checkBlock(currentBlock, mainBoard)) {
+	if (checkBlock(currentBlock, mainBoard, function(block) {
+		block.y += 1;
+		return block;
+	})) {
 		currentBlock.y += 1;
 	} else {
 		placeBlock(currentBlock, mainBoard);
@@ -71,25 +74,27 @@ function placeBlock(block, board) {
 	}
 }
 
-function checkBlock(currentBlock, board) {
+function checkBlock(currentBlock, board, movement) {
 	// checks if there is space below the block for it to fall once
-	currentBlock.y += 1;
+	var block = {};
+	block.array = currentBlock.array;
+	block.x = currentBlock.x;
+	block.y = currentBlock.y;
+	block = movement(block);
 
 	// check block against boundaries of game window
-	var array = currentBlock.array;
-	if (currentBlock.y + array.length > board.length) {
-		currentBlock.y -=1;
+	var array = block.array;
+	if (block.y + array.length > board.length) {
 		return false;
 	}
 
 	//check block against previous blocks
-	var x = currentBlock.x;
-	var y = currentBlock.y;
+	var x = block.x;
+	var y = block.y;
 	for (var i = 0; i < array.length; i++) {
 		for (var j = 0; j < array[i].length; j++) {
 			if (array[i][j] === '#' && board[y + i][x + j] === 'X') {
 				console.log('here');
-				currentBlock.y -= 1;
 				return false;
 			}
 			// // console.log(x + ', ' + y)
@@ -97,7 +102,6 @@ function checkBlock(currentBlock, board) {
 			// board[x][y] = 'X';
 		}
 	}
-	currentBlock.y -= 1;
 	return true;
 }
 
