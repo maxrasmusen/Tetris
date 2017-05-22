@@ -21,33 +21,31 @@ function init() {
 
 	var running = setInterval ( function() {
 		tick(mainBoard, HTMLBoard);
-	}, 200);
+	}, 1000);
 	$(document).keypress(function(event) {
 		handleKeypress(event, running, currentBlock, mainBoard);
+		clearBoard(mainBoard);
+		drawBlock(currentBlock, mainBoard);
+		showBoard(mainBoard, HTMLBoard);
 	});
 	// tick(mainBoard, HTMLBoard);
 }
 
 function handleKeypress(event, running, currentBlock, mainBoard) {
-	if (event.which === 113) {
+	switch(event.which) {
+		case 113: 
 			clearInterval(running);
 			console.log('stopped');
-		} else {
-			console.log(event.which);
-		}
-		switch(event.which) {
-			case 113: 
-				clearInterval(running);
-				console.log('stopped');
-				break;
-			case 108:
-				moveRight(currentBlock, mainBoard);
-				break;
-			case 106: 
-				moveLeft(currentBlock, mainBoard);
-				break;
+			break;
+		case 108:
+			moveRight(currentBlock, mainBoard);
+			break;
+		case 106: 
+			moveLeft(currentBlock, mainBoard);
+			break;
 
-		}
+	}
+
 }
 
 function moveLeft(currentBlock, mainBoard) {
@@ -69,8 +67,6 @@ function moveRight(currentBlock, mainBoard) {
 }
 function tick(mainBoard, HTMLBoard) {
 	//every tick, the block falls by one
-	var drawing = true;
-	clearBoard(mainBoard);	
 	if (checkBlock(currentBlock, mainBoard, function(block) {
 		// callback function allows us to pass any movement into checkBlock
 		block.y += 1;
@@ -81,9 +77,8 @@ function tick(mainBoard, HTMLBoard) {
 		placeBlock(currentBlock, mainBoard);
 		currentBlock = generateBlock();
 	}
-	if (drawing) {
-		drawBlock(currentBlock, mainBoard);
-	}
+	clearBoard(mainBoard);	
+	drawBlock(currentBlock, mainBoard);
 	showBoard(mainBoard, HTMLBoard);
 
 }
@@ -92,7 +87,7 @@ function generateBlock () {
 	//create a new block when old one hits the ground
 	return {
 		x : 0,
-		y : 2,
+		y : 0,
 		array : testArray
 	};
 }
