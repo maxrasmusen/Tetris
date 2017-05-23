@@ -7,7 +7,7 @@ var testArray = [
 	['#',' ']
 ];
 
-var currentBlock;
+// var currentBlock;
 var running;
 var speed = 1000;
 function init() {
@@ -56,6 +56,28 @@ function handleKeypress(event, running, currentBlock, mainBoard) {
 	}
 }
 
+function tick(mainBoard, HTMLBoard) {
+	//every tick, the block falls by one
+	if (checkBlock(currentBlock, mainBoard, function(block) {
+		// callback function allows us to pass any movement into checkBlock
+		block.y += 1;
+		return block;
+	})) {
+		currentBlock.y += 1;
+	} else {
+		placeBlock(currentBlock, mainBoard);
+		currentBlock = generateBlock();
+		speed = 1000;
+	}
+	checkRowsForClear(mainBoard);
+	clearBoard(mainBoard);	
+	drawBlock(currentBlock, mainBoard);
+	showBoard(mainBoard, HTMLBoard);
+	running = setTimeout ( function() {
+		tick(mainBoard, HTMLBoard);
+	}, speed);
+}
+
 function toggleSpeed() {
 	if(speed === 1000) {
 		speed = 200;
@@ -83,7 +105,14 @@ function clearRow(index, board) {
 	for (var i=0; i < 10; i++) {
 		board[0][i] = '';
 	}
+	registerScore();
 	return board;
+}
+
+function registerScore() {
+	var score = $('#score');
+	score.html(parseInt(score.html())+1);
+	return score.html();
 }
 
 function rotateBlockClockwise(block, mainBoard) {
@@ -146,27 +175,6 @@ function moveRight(currentBlock, mainBoard) {
 	})) {
 		currentBlock.x += 1;
 	}
-}
-function tick(mainBoard, HTMLBoard) {
-	//every tick, the block falls by one
-	if (checkBlock(currentBlock, mainBoard, function(block) {
-		// callback function allows us to pass any movement into checkBlock
-		block.y += 1;
-		return block;
-	})) {
-		currentBlock.y += 1;
-	} else {
-		placeBlock(currentBlock, mainBoard);
-		currentBlock = generateBlock();
-	}
-	checkRowsForClear(mainBoard);
-	clearBoard(mainBoard);	
-	drawBlock(currentBlock, mainBoard);
-	showBoard(mainBoard, HTMLBoard);
-	running = setTimeout ( function() {
-		tick(mainBoard, HTMLBoard);
-	}, speed);
-
 }
 
 function generateBlock () {
