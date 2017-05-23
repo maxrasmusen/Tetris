@@ -49,7 +49,17 @@ function handleKeypress(event, running, currentBlock, mainBoard) {
 		default: 
 			console.log(event.which);
 	}
+}
 
+function checkRowsForClear(board) {
+	for (var i=0; i < board.length; i++) {
+		var row = board[i];
+		if (row.every(function(element) {
+			return element === 'X';
+		})) {
+			console.log('clear row ' + i);
+		}
+	}
 }
 
 function rotateBlockClockwise(block, mainBoard) {
@@ -125,6 +135,7 @@ function tick(mainBoard, HTMLBoard) {
 		placeBlock(currentBlock, mainBoard);
 		currentBlock = generateBlock();
 	}
+	checkRowsForClear(mainBoard);
 	clearBoard(mainBoard);	
 	drawBlock(currentBlock, mainBoard);
 	showBoard(mainBoard, HTMLBoard);
@@ -163,7 +174,7 @@ function checkBlock(currentBlock, board, movement) {
 	block.x = currentBlock.x;
 	block.y = currentBlock.y;
 	block = movement(block);
-	console.log(block);
+	// console.log(block);
 	// check block against boundaries of game window
 	var array = block.array;
 	if (block.y + array.length > board.length ||
