@@ -1,12 +1,5 @@
 $(init)
 
-var testArray = [
-	['#','#'],
-	['#',''],
-	['#',' '],
-	['#',' ']
-];
-
 // var currentBlock;
 var running;
 var speed = 1000;
@@ -179,10 +172,13 @@ function moveRight(currentBlock, mainBoard) {
 
 function generateBlock () {
 	//create a new block when old one hits the ground
+
+	var rand = Math.floor(Math.random() * 5);
+	console.log(rand);
 	var newBlock = {
 		x : 0,
 		y : 0,
-		array : testArray
+		array : pieces[rand]
 	};
 	return newBlock;
 }
