@@ -21,7 +21,14 @@ function showBoard(board, HTMLBoard) {
 
 	HTMLBoard.children().toArray().forEach(function (row, rowIndex) {
 		$(row).children().toArray().forEach (function (square, squareIndex) {
-			$(square).html(board[rowIndex][squareIndex]);
+			var squareContents = board[rowIndex][squareIndex];
+			if (squareContents === 'X') {
+				$(square).attr('class', 'terrain');
+			} else if (squareContents === '#') {
+				$(square).attr('class', 'block');
+			} else {
+				$(square).attr('class', 'background');
+			}
 		});
 	});
 }

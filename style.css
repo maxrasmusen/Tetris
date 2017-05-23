@@ -2,17 +2,35 @@
 	margin: 0px;
 }
 li {
-	width: 30px;
+	width: 50px;
 	height: 30px;
-	border: solid black 1px;
+	border: solid grey 1px;
 	display: table-cell;
 }
 
 ul {
 	list-style-type: none;
+	padding: 0px;
 }
 
 #main {
 	margin-top: 50px;
 	margin-left: 300px;
+	border: solid black 1px;
+	width: 320px;
+}
+
+.background {
+	background-color: white;
+	border: solid white 1px;
+}
+
+.terrain {
+	background-color: black;
+	border: solid black 1px;
+}
+
+.block {
+	background-color: grey;
+	border: solid grey 1px;
 }
