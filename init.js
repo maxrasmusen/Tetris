@@ -12,7 +12,7 @@ function generateBoard(height) {
 
 function setUpHTMLBoard(height) {
 	//creates inital HTML board. This is a bunch of html elements that are updated using the mainbBoard
-	var board = $('#main');
+	var board = $('#main').html('');
 	for (var i = 0; i < height; i++) {
 		var row = $('<ul>').attr('id', 'row-' + i);
 		board.append(row);
@@ -28,12 +28,13 @@ function init() {
 	var mainBoard = generateBoard(height + 5);
 	var HTMLBoard = setUpHTMLBoard(height);
 	currentBlock = generateBlock();
+	nextBlock = generateBlock();
 
 	//first frame
 	running = tick(mainBoard, HTMLBoard);
 
 	$(document).keypress(function(event) {
-		handleKeypress(event, running, currentBlock, mainBoard);
+		handleKeypress(event, currentBlock, mainBoard);
 		clearBoard(mainBoard);
 		drawBlock(currentBlock, mainBoard);
 		showBoard(mainBoard, HTMLBoard);

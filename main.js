@@ -3,8 +3,9 @@ $(init)
 // var currentBlock;
 var running;
 var speed = 1000;
+var reInit = false;
 
-function handleKeypress(event, running, currentBlock, mainBoard) {
+function handleKeypress(event, currentBlock, mainBoard) {
 	switch(event.which) {
 		case 113: 
 			clearInterval(running);
@@ -50,9 +51,15 @@ function tick(mainBoard, HTMLBoard) {
 	clearBoard(mainBoard);	
 	drawBlock(currentBlock, mainBoard);
 	showBoard(mainBoard, HTMLBoard);
-	running = setTimeout ( function() {
-		tick(mainBoard, HTMLBoard);
-	}, speed);
+	if (!reInit) {
+		running = setTimeout ( function() {
+			tick(mainBoard, HTMLBoard);
+		}, speed);
+	} else {
+		reInit = false;
+		$(document).unbind('keypress');
+		init();
+	}
 }
 
 function toggleSpeed() {
@@ -85,11 +92,10 @@ function generateBlock () {
 	//create a new block when old one hits the ground
 
 	var rand = Math.floor(Math.random() * 5);
-	console.log(rand);
 	var arr = pieces[rand];
 	var yStart = 5 - arr.length;
 	var newBlock = {
-		x : 0,
+		x : 3,
 		y : yStart,
 		array : arr
 	};
@@ -99,6 +105,7 @@ function generateBlock () {
 function placeBlock(block, board) {
 	// places the block on the ground
 	// this is needed so this block stays where it is permanently, won't be refreshed each tick
+	checkForLoss(block); 
 	var array = block.array;
 	var x = block.x;
 	var y = block.y;
@@ -108,6 +115,13 @@ function placeBlock(block, board) {
 				board[y+i][x + j] = 'X';
 			}
 		}
+	}
+}
+
+function checkForLoss(block) {
+	if (block.y <= 5) {
+		alert('You lost with a score of: ' + $('#score').html());
+		reInit = true;
 	}
 }
 
