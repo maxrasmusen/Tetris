@@ -41,8 +41,11 @@ function handleKeypress(event, running, currentBlock, mainBoard) {
 		case 117:
 			rotateBlockAntiClockwise(currentBlock, mainBoard);
 			break;
-		case 107:
+		case 32:
 			toggleSpeed();
+			break;
+		case 107:
+			reflectBlock(currentBlock);
 			break;
 		default: 
 			console.log(event.which);
@@ -77,6 +80,18 @@ function toggleSpeed() {
 	} else {
 		speed = 1000;
 	}
+}
+
+function reflectBlock(block) {
+	block.array = reflectArray(block.array);
+	return block;
+}
+
+function reflectArray(array) {
+	for (var i = 0; i < array.length; i++) {
+		array[i].reverse();
+	}
+	return array;
 }
 
 function checkRowsForClear(board) {
