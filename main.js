@@ -1,8 +1,8 @@
 $(init)
 
 var testArray = [
-	['','#'],
-	['','#'],
+	['#','#'],
+	['#',''],
 	['#',' '],
 	['#',' ']
 ];
@@ -18,7 +18,7 @@ function init() {
 
 	var running = setInterval ( function() {
 		tick(mainBoard, HTMLBoard);
-	}, 1000);
+	}, 500);
 	$(document).keypress(function(event) {
 		handleKeypress(event, running, currentBlock, mainBoard);
 		clearBoard(mainBoard);
@@ -40,9 +40,60 @@ function handleKeypress(event, running, currentBlock, mainBoard) {
 		case 106: 
 			moveLeft(currentBlock, mainBoard);
 			break;
-
+		case 111:
+			rotateBlockClockwise(currentBlock, mainBoard);
+			break;
+		case 117:
+			rotateBlockAntiClockwise(currentBlock, mainBoard);
+			break;
+		default: 
+			console.log(event.which);
 	}
 
+}
+
+function rotateBlockClockwise(block, mainBoard) {
+	if (checkBlock(block, mainBoard, function(placeHolder) {
+		placeHolder.array = rotateArrayClockwise(placeHolder.array);
+		return placeHolder;
+	})) {
+		block.array = rotateArrayClockwise(block.array);
+	}
+	return block;
+}
+
+function rotateBlockAntiClockwise(block, mainBoard) {
+	//TODO: FIX THIS SO MUCH
+	block = rotateBlockClockwise(block, mainBoard);
+	block = rotateBlockClockwise(block, mainBoard);
+	block = rotateBlockClockwise(block, mainBoard);
+	return block;
+}
+
+function rotateArrayClockwise(array) {
+	// DO NOT PASS IN 1D ARRAY NO CHECKS YET
+	// TODO: SORT OUT THIS WHOLE FUNCTION AT SOME POINT
+
+	// create new array to use
+	var newArray = [];
+	// console.log(array.length);
+	// console.log(array[0].length);
+	for (var i = 0; i < array[0].length; i ++) {
+		newArray[i] = [];
+		for (var j = 0; j < array.length; j++) {
+			// console.log(i + ', ' + j)
+			newArray[i][j] = 0;
+		}
+	}
+	// console.log(newArray);
+	// console.log('---');
+	for (var i=0; i < array.length; i++) {
+		for (var j=0; j < array[0].length; j++) {
+			newArray[j][newArray[0].length-1-i] = array[i][j];
+		}
+	}
+
+	return newArray;
 }
 
 function moveLeft(currentBlock, mainBoard) {
@@ -82,11 +133,12 @@ function tick(mainBoard, HTMLBoard) {
 
 function generateBlock () {
 	//create a new block when old one hits the ground
-	return {
+	var newBlock = {
 		x : 0,
 		y : 0,
 		array : testArray
 	};
+	return newBlock;
 }
 
 function placeBlock(block, board) {
@@ -111,7 +163,7 @@ function checkBlock(currentBlock, board, movement) {
 	block.x = currentBlock.x;
 	block.y = currentBlock.y;
 	block = movement(block);
-
+	console.log(block);
 	// check block against boundaries of game window
 	var array = block.array;
 	if (block.y + array.length > board.length ||
