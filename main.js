@@ -83,18 +83,16 @@ function toggleSpeed() {
 }
 
 function reflectBlock(block, mainBoard) {
+	// NOTE reflect array overrides the existing array, so that needs to change
 	if (checkBlock(block, mainBoard, function(placeHolder) {
-		console.log('getting here');
+		// console.log('getting here');
 		placeHolder.array = reflectArray(placeHolder.array);
 		return placeHolder;
 	})) {
-		console.log('returning true')
+		// console.log('returning true')
 		// console.log(block.array);
 		block.array = reflectArray(block.array);
-		block.array = reflectArray(block.array);
 		// console.log(block.array);
-	} else {
-		block.array = reflectArray(block.array);
 	}
 	return block;
 }
@@ -229,7 +227,13 @@ function placeBlock(block, board) {
 function checkBlock(currentBlock, board, movement) {
 	// checks if there is space below the block for it to fall once
 	var block = {};
-	block.array = currentBlock.array;
+	block.array = [];
+	for (var i = 0; i < currentBlock.array.length; i++) {
+		block.array[i] = [];
+		for (var j = 0; j < currentBlock.array[0].length; j++) {
+			block.array[i][j] = currentBlock.array[i][j];
+		}
+	}
 	block.x = currentBlock.x;
 	block.y = currentBlock.y;
 	block = movement(block);
