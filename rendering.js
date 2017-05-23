@@ -21,7 +21,7 @@ function showBoard(board, HTMLBoard) {
 
 	HTMLBoard.children().toArray().forEach(function (row, rowIndex) {
 		$(row).children().toArray().forEach (function (square, squareIndex) {
-			var squareContents = board[rowIndex][squareIndex];
+			var squareContents = board[rowIndex + 5][squareIndex];
 			if (squareContents === 'X') {
 				$(square).attr('class', 'terrain');
 			} else if (squareContents === '#') {

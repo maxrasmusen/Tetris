@@ -86,10 +86,12 @@ function generateBlock () {
 
 	var rand = Math.floor(Math.random() * 5);
 	console.log(rand);
+	var arr = pieces[rand];
+	var yStart = 5 - arr.length;
 	var newBlock = {
 		x : 0,
-		y : 0,
-		array : pieces[rand]
+		y : yStart,
+		array : arr
 	};
 	return newBlock;
 }
