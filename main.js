@@ -18,7 +18,7 @@ function init() {
 
 	var running = setInterval ( function() {
 		tick(mainBoard, HTMLBoard);
-	}, 500);
+	}, 200);
 	$(document).keypress(function(event) {
 		handleKeypress(event, running, currentBlock, mainBoard);
 		clearBoard(mainBoard);
@@ -57,9 +57,20 @@ function checkRowsForClear(board) {
 		if (row.every(function(element) {
 			return element === 'X';
 		})) {
-			console.log('clear row ' + i);
+			clearRow(i, board);
 		}
 	}
+}
+
+function clearRow(index, board) {
+	for (var i = index; i > 0; i--) {
+		board[i] = board[i-1];
+	}
+	board[0] = [];
+	for (var i=0; i < 10; i++) {
+		board[0][i] = '';
+	}
+	return board;
 }
 
 function rotateBlockClockwise(block, mainBoard) {
