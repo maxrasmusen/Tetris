@@ -8,7 +8,8 @@ var testArray = [
 ];
 
 var currentBlock;
-
+var running;
+var speed = 1000;
 function init() {
 
 	var mainBoard = generateBoard();
@@ -16,9 +17,10 @@ function init() {
 	var HTMLBoard = setUpHTMLBoard();
 	currentBlock = generateBlock();
 
-	var running = setInterval ( function() {
-		tick(mainBoard, HTMLBoard);
-	}, 200);
+	// var running = setInterval ( function() {
+	// 	tick(mainBoard, HTMLBoard);
+	// }, speed);
+	running = tick(mainBoard, HTMLBoard);
 	$(document).keypress(function(event) {
 		handleKeypress(event, running, currentBlock, mainBoard);
 		clearBoard(mainBoard);
@@ -46,8 +48,19 @@ function handleKeypress(event, running, currentBlock, mainBoard) {
 		case 117:
 			rotateBlockAntiClockwise(currentBlock, mainBoard);
 			break;
+		case 107:
+			toggleSpeed();
+			break;
 		default: 
 			console.log(event.which);
+	}
+}
+
+function toggleSpeed() {
+	if(speed === 1000) {
+		speed = 200;
+	} else {
+		speed = 1000;
 	}
 }
 
@@ -150,6 +163,9 @@ function tick(mainBoard, HTMLBoard) {
 	clearBoard(mainBoard);	
 	drawBlock(currentBlock, mainBoard);
 	showBoard(mainBoard, HTMLBoard);
+	running = setTimeout ( function() {
+		tick(mainBoard, HTMLBoard);
+	}, speed);
 
 }
 
