@@ -45,9 +45,11 @@ function rotateArrayClockwise(array) {
 		newArray[i] = [];
 		for (var j = 0; j < array.length; j++) {
 			// console.log(i + ', ' + j)
-			newArray[i][j] = 0;
+			newArray[i][j] = '';
 		}
 	}
+
+	//fill new array 
 	for (var i=0; i < array.length; i++) {
 		for (var j=0; j < array[0].length; j++) {
 			newArray[j][newArray[0].length-1-i] = array[i][j];
