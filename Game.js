@@ -7,6 +7,7 @@ class Game {
 		this.toStop = false;
 		var currentFrame;
 		this.speed = 1000;
+		this.currentSpeed = this.speed;
 		this.score = 0;
 	}
 
@@ -35,16 +36,19 @@ class Game {
 	}
 
 	toggleSpeed() {
-		if (this.speed === 1000) {
-			this.speed = 100
+		if (this.currentSpeed === this.speed) {
+			this.currentSpeed = 100;
 		} else {
-			this.speed = 1000
+			this.currentSpeed = this.speed;
 		}
 	}
 
 	scoreInc() {
 		var score = $('#score');
 		score.html(parseInt(score.html())+1);
+		if (this.speed > 100) {
+			this.speed -= 20;
+		}
 		return score.html();
 	}
 
@@ -56,17 +60,19 @@ class Game {
 	}
 
 	frame() {
+		// console.log(this.speed);
 		if (!this.currentBlock.updatePosition(this.mainBoard)) {
 			this.mainBoard.place(this.currentBlock);
 			this.checkForLoss(this.currentBlock);
-			this.speed = 1000;
 			var rand = Math.floor(Math.random() * 5);
 			this.currentBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+			this.currentSpeed = this.speed;
+			console.log(this.currentSpeed);
 		}
 		this.mainBoard.checkRowsForClear(this);
 		this.draw();
 		if (!this.toStop) {
-			this.currentFrame = setTimeout(frame, this.speed, this);
+			this.currentFrame = setTimeout(frame, this.currentSpeed, this);
 		}
 	}
 }

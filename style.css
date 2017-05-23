@@ -18,11 +18,13 @@ ul {
 	margin-left: 300px;
 	border: solid black 1px;
 	width: 320px;
+	background-color: white;
 }
 
 .background {
 	background-color: white;
 	border: solid white 1px;
+	opacity: 0;
 }
 
 .terrain {

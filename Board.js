@@ -16,7 +16,7 @@ class Board {
 
 	place(block) {
 		// checkForLoss(block); 
-		console.log('here')
+		// console.log('here')
 		var array = block.array;
 		var x = block.x;
 		var y = block.y;

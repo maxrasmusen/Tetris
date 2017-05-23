@@ -1,7 +1,7 @@
 $(initOOP)
 
 function initOOP() {
-	var height = 10;
+	var height = 20;
 	var game = new Game(new Board(height + 5), new Display(height));
 	game.start();
 	
