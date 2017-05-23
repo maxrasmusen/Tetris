@@ -45,7 +45,7 @@ function handleKeypress(event, running, currentBlock, mainBoard) {
 			toggleSpeed();
 			break;
 		case 107:
-			reflectBlock(currentBlock);
+			reflectBlock(currentBlock, mainBoard);
 			break;
 		default: 
 			console.log(event.which);
@@ -82,16 +82,29 @@ function toggleSpeed() {
 	}
 }
 
-function reflectBlock(block) {
-	block.array = reflectArray(block.array);
+function reflectBlock(block, mainBoard) {
+	if (checkBlock(block, mainBoard, function(placeHolder) {
+		console.log('getting here');
+		placeHolder.array = reflectArray(placeHolder.array);
+		return placeHolder;
+	})) {
+		console.log('returning true')
+		// console.log(block.array);
+		block.array = reflectArray(block.array);
+		block.array = reflectArray(block.array);
+		// console.log(block.array);
+	} else {
+		block.array = reflectArray(block.array);
+	}
 	return block;
 }
 
 function reflectArray(array) {
+	var newArray = []
 	for (var i = 0; i < array.length; i++) {
-		array[i].reverse();
+		newArray[i] = array[i].reverse();
 	}
-	return array;
+	return newArray;
 }
 
 function checkRowsForClear(board) {
