@@ -21,7 +21,8 @@ function setUpNewGame() {
 	if (prompt('Play Again?') === 'y') {
 		$('#main-game').html('')
 		var height = 20;
-		game = new Game(new Board(10, height + 5), new Display(10, height, '#main-game'));
+		width = 10;
+		game = new Game(new Board(width, height + 5), new Display(width, height, '#main-game'));
 		var window = setUpNextWindow();
 		window.watch(game);
 		game.start();

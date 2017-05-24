@@ -21,12 +21,14 @@ class Game {
 	}
 
 	togglePause() {
-		console.log('togglePause');
-		if (this.currentFrame === false) {
-			this.currentFrame = setTimeout(frame, this.currentSpeed, this);
-		} else {
-			clearInterval(this.currentFrame);
-			this.currentFrame = false;
+			if (!this.toStop) {
+			console.log('togglePause');
+			if (this.currentFrame === false) {
+				this.currentFrame = setTimeout(frame, this.currentSpeed, this);
+			} else {
+				clearInterval(this.currentFrame);
+				this.currentFrame = false;
+			}
 		}
 	}
 
@@ -112,7 +114,9 @@ class Game {
 		this.draw();
 		
 		//need this to prevent the 
-		this.currentFrame = setTimeout(frame, this.currentSpeed, this);
+		if (!this.toStop) {
+			this.currentFrame = setTimeout(frame, this.currentSpeed, this);
+		}
 	}
 }
 

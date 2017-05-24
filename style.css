@@ -2,10 +2,11 @@
 	margin: 0px;
 }
 li {
-	width: 50px;
+	width: 30px;
 	height: 30px;
 	border: solid grey 1px;
 	display: table-cell;
+	opacity: 0.85;
 }
 
 ul {
@@ -20,12 +21,12 @@ body {
 #main {
 	display: inline-block;
 	margin-left: 100px;
-	margin-top: 100px;
+	margin-top: 50px;
 }
 
 #main-game {
 	border: solid black 1px;
-	width: 320px;
+	/*width: 320px;*/
 	/*background-color: yellow;*/
 	background-image: url('https://media.giphy.com/media/lSzQjkthGS1gc/giphy.gif');
 	background-size: cover;
@@ -57,7 +58,7 @@ body {
 #sidebar {
 	display: inline-block;
 	vertical-align: top;
-	margin-top: 100px;
+	margin-top: 50px;
 	margin-left: 20px;
 }
 
@@ -68,7 +69,7 @@ body {
 #rules {
 	display: inline-block;
 	vertical-align: top;
-	margin-top: 100px;
+	margin-top: 50px;
 	width: 20%;
 }
 
