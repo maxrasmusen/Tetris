@@ -25,10 +25,11 @@ class Display {
 			var row = this.board.children().toArray()[i];
 			for (var j=0; j < $(row).children().toArray().length; j++) {
 				var square = $(row).children().toArray()[j];
-				var squareContents = gameBoard.board[i + 5][j];
-				if (squareContents === 'X') {
+				var gameSquare = gameBoard.board[i + 5][j];
+				// console.log(gameSquare);
+				if (gameSquare.getContent() === 'X') {
 					$(square).attr('class', 'terrain');
-				} else if (squareContents === '#') {
+				} else if (gameSquare.getContent() === '#') {
 					$(square).attr('class', 'block');
 				} else {
 					$(square).attr('class', 'background');

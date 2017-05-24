@@ -36,7 +36,7 @@ function overlayArray(array, board, x, y) {
 	for (var i = 0; i < array.length; i++) {
 		for (var j = 0; j < array[i].length; j++) {
 			if (array[i][j] === '#') {
-				board[y+i][x + j] = array[i][j];
+				board[y+i][x + j].setContent('#');
 			}
 		}
 	}

@@ -9,8 +9,8 @@ class Board {
 		for (var i = 0; i < this.board.length; i++) {
 			for (var j = 0; j < this.board[i].length; j++) {
 				// console.log(board[i][j]);
-				if (this.board[i][j] !== 'X') {
-					this.board[i][j] = ' ';
+				if (this.board[i][j].getContent() !== 'X') {
+					this.board[i][j] = new Square('-');
 				}
 			}
 		}
@@ -25,7 +25,7 @@ class Board {
 		for (var i = 0; i < array.length; i++) {
 			for (var j = 0; j < array[i].length; j++) {
 				if (array[i][j] === '#') {
-					this.board[y+i][x + j] = 'X';
+					this.board[y+i][x + j].setContent('X');
 				}
 			}
 		}
@@ -35,7 +35,7 @@ class Board {
 		for (var i=0; i < this.board.length; i++) {
 			var row = this.board[i];
 			if (row.every(function(element) {
-				return element === 'X';
+				return element.getContent() === 'X';
 			})) {
 				this.clearRow(i, game);
 			}
@@ -48,7 +48,7 @@ class Board {
 		}
 		this.board[0] = [];
 		for (var i=0; i < 10; i++) {
-			this.board[0][i] = '';
+			this.board[0][i] = new Square('');
 		}
 		game.scoreInc();
 	}
@@ -59,9 +59,9 @@ class Board {
 		for (var i=0; i < this.height; i++) {
 			mainBoard[i] = [];
 			for (var j=0; j < this.width; j++) {
-				mainBoard[i][j] = '';
+				mainBoard[i][j] = new Square('');
 			}
 		}
-	return mainBoard;
-}
+		return mainBoard;
+	}
 }

@@ -50,7 +50,7 @@ class Block {
 		//check block against previous blocks
 		for (var i = 0; i < this.array.length; i++) {
 			for (var j = 0; j < this.array[i].length; j++) {
-				if (this.array[i][j] === '#' && board[this.y + i][this.x + j] === 'X') {
+				if (this.array[i][j] === '#' && board[this.y + i][this.x + j].getContent() === 'X') {
 					console.log('here');
 					return false;
 				}
