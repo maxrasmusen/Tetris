@@ -3,10 +3,11 @@ class Block {
 		this.array = array;
 		this.x = x;
 		this.y = y;
+		this.color = 'red';
 	}
 
 	draw(board) {
-		overlayArray(this.array, board.board, this.x, this.y);
+		overlayArray(this, board.board);
 	}
 	
 	updatePosition(board) {

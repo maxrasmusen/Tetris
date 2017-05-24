@@ -27,6 +27,12 @@ class Display {
 				var square = $(row).children().toArray()[j];
 				var gameSquare = gameBoard.board[i + 5][j];
 				$(square).attr('class', gameSquare.getType());
+				if (gameSquare.getType() === 'block') {
+					$(square).css( {
+						'background-color': gameSquare.getColor(),
+						'border-color': gameSquare.getColor()
+					});
+				}
 			}
 		}
 	}

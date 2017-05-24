@@ -2,6 +2,7 @@ class Square {
 
 	constructor(content) {
 		this.content = content;
+		this.color;
 	}
 
 	setContent(str) {
@@ -20,5 +21,13 @@ class Square {
 		} else {
 			return 'background';
 		}
+	}
+
+	setColor(color) {
+		this.color = color;
+	}
+
+	getColor() {
+		return this.color;
 	}
 }

@@ -30,13 +30,14 @@ function rotateArrayClockwise(array) {
 	return newArray;
 }
 
-function overlayArray(array, board, x, y) {
+function overlayArray(block, board) {
 	// translates the block array onto the board. 
 	// console.log(x + ', ' + y)
-	for (var i = 0; i < array.length; i++) {
-		for (var j = 0; j < array[i].length; j++) {
-			if (array[i][j] === '#') {
-				board[y+i][x + j].setContent('#');
+	for (var i = 0; i < block.array.length; i++) {
+		for (var j = 0; j < block.array[i].length; j++) {
+			if (block.array[i][j] === '#') {
+				board[block.y+i][block.x + j].setContent('#');
+				board[block.y+i][block.x+j].setColor(block.color);
 			}
 		}
 	}
