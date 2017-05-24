@@ -18,15 +18,7 @@ class Window {
 	}
 
 	setBlock(block) {
-		var wBlockArray = [];
-
-		for (var i = 0; i < block.array.length; i++) {
-				wBlockArray[i] = [];
-				for (var j = 0; j < block.array[0].length; j++) {
-				wBlockArray[i][j] = block.array[i][j];
-			}
-		}	
-
+		var wBlockArray = block.array.slice();
 		var wBlock = new Block(1, 6, wBlockArray);
 		this.currentBlock = wBlock;
 	}

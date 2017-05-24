@@ -21,15 +21,7 @@ class Block {
 	}
 
 	checkMovement(board, movement) {
-		var placeHolderArray = [];
-
-		for (var i = 0; i < this.array.length; i++) {
-			placeHolderArray[i] = [];
-			for (var j = 0; j < this.array[0].length; j++) {
-			placeHolderArray[i][j] = this.array[i][j];
-			}
-		}	
-
+		var placeHolderArray = this.array.slice();
 		var placeHolder = new Block(this.x, this.y, placeHolderArray);
 
 		placeHolder = movement(placeHolder);

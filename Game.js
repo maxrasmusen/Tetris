@@ -76,14 +76,7 @@ class Game {
 			this.mainBoard.place(this.currentBlock);
 			this.checkForLoss(this.currentBlock);
 			
-			var nArray = [];
-			for (var i = 0; i < this.nextBlock.array.length; i++) {
-				nArray[i] = [];
-				for (var j = 0; j < this.nextBlock.array[0].length; j++) {
-					nArray[i][j] = this.nextBlock.array[i][j];
-				}
-			}
-
+			var nArray = this.nextBlock.array.slice();
 			this.currentBlock = new Block(this.nextBlock.x, this.nextBlock.y, nArray);
 
 			var rand = Math.floor(Math.random() * 5);
