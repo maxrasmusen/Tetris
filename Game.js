@@ -14,7 +14,10 @@ class Game {
 		this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
 		this.currentBlock.color = getColor();
 		this.nextBlock.color = getColor();
-		this.onStop = function() {console.log('stop')}
+		this.onStop = function() {
+						console.log('stop');
+						return this.score
+					}
 	}
 
 	start() {

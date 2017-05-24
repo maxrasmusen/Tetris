@@ -13,6 +13,10 @@ ul {
 	padding: 0px;
 }
 
+body {
+	/*background: linear-gradient(blue, black	);*/
+}
+
 #main {
 	display: inline-block;
 	margin-left: 100px;
@@ -25,7 +29,7 @@ ul {
 	/*background-color: yellow;*/
 	background-image: url('https://media.giphy.com/media/lSzQjkthGS1gc/giphy.gif');
 	background-size: cover;
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
 .background {
@@ -46,7 +50,7 @@ ul {
 
 #next-window {
 	width: 160px;
-	background-color: white;
+	background-color: black;
 	border: solid black 1px;
 }
 
@@ -66,4 +70,18 @@ ul {
 	vertical-align: top;
 	margin-top: 100px;
 	width: 20%;
+}
+
+@media screen and (max-width: 770px) {
+	#main-game {
+		display: block;
+		margin: auto;
+	}
+
+	#main {
+		margin: 0px 0px 0px 0px;
+		display: block;
+		width: 100%;
+		background-color: black;
+	}
 }

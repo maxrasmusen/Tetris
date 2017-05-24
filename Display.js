@@ -30,7 +30,8 @@ class Display {
 				if (gameSquare.getType() === 'block') {
 					$(square).css( {
 						'background-color': gameSquare.getColor(),
-						'border-color': gameSquare.getColor()
+						'border-color': gameSquare.getColor(),
+						'box-shadow': '0px 0px 10px 0px ' + gameSquare.getColor()
 					});
 				}
 			}
