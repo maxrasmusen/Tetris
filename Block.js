@@ -23,7 +23,7 @@ class Block {
 
 	checkMovement(board, movement) {
 		var placeHolderArray = this.array.slice();
-		var placeHolder = new Block(this.x, this.y, placeHolderArray);
+		var placeHolder = new Block(this.x, this.y, placeHolderArray);	
 
 		placeHolder = movement(placeHolder);
 		return placeHolder.checkCollisions(board);
@@ -86,11 +86,11 @@ class Block {
 	}
 
 	reflect(board) {
-		if (this.checkMovement(board.board, function(placeHolder) {
-			placeHolder.array = reflectArray(placeHolder.array);
-			return placeHolder;
+		if (this.checkMovement(board.board, function(block) {
+			block.array = reflectArray(block.array, 0);
+			return block;
 		})) {
-			this.array = reflectArray(this.array);
+			this.array = reflectArray(this.array, 1);
 		}
 	}
 }

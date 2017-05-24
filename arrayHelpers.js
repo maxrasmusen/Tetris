@@ -1,7 +1,7 @@
-function reflectArray(array) {
+function reflectArray(array, n) {
 	var newArray = []
 	for (var i = 0; i < array.length; i++) {
-		newArray[i] = array[i].reverse();
+		newArray[i] = array[i].slice().reverse();
 	}
 	return newArray;
 }
