@@ -26,14 +26,7 @@ class Display {
 			for (var j=0; j < $(row).children().toArray().length; j++) {
 				var square = $(row).children().toArray()[j];
 				var gameSquare = gameBoard.board[i + 5][j];
-				// console.log(gameSquare);
-				if (gameSquare.getContent() === 'X') {
-					$(square).attr('class', 'terrain');
-				} else if (gameSquare.getContent() === '#') {
-					$(square).attr('class', 'block');
-				} else {
-					$(square).attr('class', 'background');
-				}
+				$(square).attr('class', gameSquare.getType());
 			}
 		}
 	}

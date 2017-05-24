@@ -1,5 +1,5 @@
 class Square {
-	
+
 	constructor(content) {
 		this.content = content;
 	}
@@ -10,5 +10,15 @@ class Square {
 
 	getContent() {
 		return this.content;
+	}
+
+	getType() {
+		if (this.content === '#') {
+			return 'block';
+		} else if (this.content === 'X') {
+			return 'terrain';
+		} else {
+			return 'background';
+		}
 	}
 }
