@@ -20,6 +20,16 @@ class Game {
 					}
 	}
 
+	togglePause() {
+		console.log('togglePause');
+		if (this.currentFrame === false) {
+			this.currentFrame = setTimeout(frame, this.currentSpeed, this);
+		} else {
+			clearInterval(this.currentFrame);
+			this.currentFrame = false;
+		}
+	}
+
 	start() {
 		if (this.window) {
 			this.updateWindow();
@@ -41,6 +51,7 @@ class Game {
 		console.log('Stop')
 		this.toStop = true;
 		clearInterval(this.currentFrame);
+		this.currentFrame = false;
 		this.onStop();
 	}
 
@@ -99,9 +110,9 @@ class Game {
 		}
 		this.mainBoard.checkRowsForClear(this);
 		this.draw();
-		if (!this.toStop) {
-			this.currentFrame = setTimeout(frame, this.currentSpeed, this);
-		}
+		
+		//need this to prevent the 
+		this.currentFrame = setTimeout(frame, this.currentSpeed, this);
 	}
 }
 

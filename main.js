@@ -46,6 +46,9 @@ function onKeyPress(event, game) {
 		case 113: 
 			game.stop();
 			break;
+		case 119:
+			game.togglePause();
+			break;
 		case 108:
 			game.currentBlock.moveRight(game.mainBoard);
 			break;
