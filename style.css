@@ -22,13 +22,13 @@ ul {
 #main-game {
 	border: solid black 1px;
 	width: 320px;
-	background-color: white;
+	background-color: black;
 	display: inline-block;
 }
 
 .background {
-	background-color: white;
-	border: solid white 1px;
+	background-color: black;
+	border: solid darkgrey 1px;
 	opacity: 0;
 }
 

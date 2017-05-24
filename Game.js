@@ -10,8 +10,11 @@ class Game {
 		this.currentSpeed = this.speed;
 		this.score = 0;
 		this.nextWindow;
-		var rand = Math.floor(Math.random() * 5);
+		rand = Math.floor(Math.random() * 5);
 		this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+		this.currentBlock.color = getColor();
+		this.nextBlock.color = getColor();
+		this.onStop = function() {console.log('stop')}
 	}
 
 	start() {
@@ -35,6 +38,7 @@ class Game {
 		console.log('Stop')
 		this.toStop = true;
 		clearInterval(this.currentFrame);
+		this.onStop();
 	}
 
 	toggleSpeed() {
@@ -80,10 +84,10 @@ class Game {
 			this.checkForLoss(this.currentBlock);
 			
 			var nArray = this.nextBlock.array.slice();
-			this.currentBlock = this.nextBlock;//new Block(this.nextBlock.x, this.nextBlock.y, nArray);
-			console.log(this.nextBlock.color);
+			this.currentBlock = this.nextBlock;
 			var rand = Math.floor(Math.random() * 5);
 			this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+			this.nextBlock.color = getColor();
 			this.currentSpeed = this.speed;
 			if (this.window) {
 				this.updateWindow();

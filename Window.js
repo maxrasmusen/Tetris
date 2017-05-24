@@ -6,7 +6,6 @@ class Window {
 	}
 
 	draw() {
-		console.log('drawing');
 		this.mainBoard.clear();
 		this.currentBlock.draw(this.mainBoard);
 		this.display.drawToScreen(this.mainBoard);

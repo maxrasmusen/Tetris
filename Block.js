@@ -1,19 +1,13 @@
+var colors = ['#FFBB97', '#FFA5A0', '#FECDB6', '#F1EDBC', '#D6EDCB', '#A36E53', '#A35D59', '#A27D6A', '#99956F', '#83957B'];
+var colorCounter = 0;
+
 class Block {
 	constructor (x, y, array) {
 		this.array = array;
 		this.x = x;
 		this.y = y;
 		var rand = Math.floor(Math.random()*4);
-		this.color;
-		if (rand === 1){
-			 this.color = 'red';
-		} else if (rand === 2) {
-			this.color = 'yellow';
-		} else if (rand === 3) {
-			this.color = 'green';
-		} else {
-			this.color = 'blue';
-		}
+		this.color = 'grey';
 	}
 
 	draw(board) {
@@ -104,3 +98,12 @@ class Block {
 		}
 	}
 }
+
+function getColor() {
+	if (colorCounter >= colors.length-1) {
+		colorCounter = 0;
+	} else {
+		colorCounter ++;
+	}
+	return colors[colorCounter];
+} 
