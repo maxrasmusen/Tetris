@@ -15,6 +15,9 @@ class Game {
 	}
 
 	start() {
+		if (this.window) {
+			this.updateWindow();
+		}
 		frame(this);
 	}
 
@@ -77,18 +80,18 @@ class Game {
 			this.checkForLoss(this.currentBlock);
 			
 			var nArray = this.nextBlock.array.slice();
-			this.currentBlock = new Block(this.nextBlock.x, this.nextBlock.y, nArray);
-
+			this.currentBlock = this.nextBlock;//new Block(this.nextBlock.x, this.nextBlock.y, nArray);
+			console.log(this.nextBlock.color);
 			var rand = Math.floor(Math.random() * 5);
 			this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
 			this.currentSpeed = this.speed;
+			if (this.window) {
+				this.updateWindow();
+			}
 			// console.log(this.currentSpeed);
 		}
 		this.mainBoard.checkRowsForClear(this);
 		this.draw();
-		if (this.window) {
-			this.updateWindow();
-		}
 		if (!this.toStop) {
 			this.currentFrame = setTimeout(frame, this.currentSpeed, this);
 		}

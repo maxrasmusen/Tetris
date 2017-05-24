@@ -3,7 +3,17 @@ class Block {
 		this.array = array;
 		this.x = x;
 		this.y = y;
-		this.color = 'red';
+		var rand = Math.floor(Math.random()*4);
+		this.color;
+		if (rand === 1){
+			 this.color = 'red';
+		} else if (rand === 2) {
+			this.color = 'yellow';
+		} else if (rand === 3) {
+			this.color = 'green';
+		} else {
+			this.color = 'blue';
+		}
 	}
 
 	draw(board) {

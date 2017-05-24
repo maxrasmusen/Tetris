@@ -20,6 +20,7 @@ class Window {
 	setBlock(block) {
 		var wBlockArray = block.array.slice();
 		var wBlock = new Block(1, 6, wBlockArray);
+		wBlock.color = block.color;
 		this.currentBlock = wBlock;
 	}
 
