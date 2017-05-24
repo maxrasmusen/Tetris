@@ -1,8 +1,10 @@
 class Board {
-	constructor(height) {
-		this.board = this.generateBoard(height);
+	constructor(width, height) {
+		this.width = width;
+		this.height = height;
+		this.board = this.generateBoard();
 	}
-	
+
 	clear() {
 		for (var i = 0; i < this.board.length; i++) {
 			for (var j = 0; j < this.board[i].length; j++) {
@@ -51,12 +53,12 @@ class Board {
 		game.scoreInc();
 	}
 
-	generateBoard(height) {
+	generateBoard() {
 	//creates inital board. this is the board the logic is done on. a 2d array
 	var mainBoard = [];
-		for (var i=0; i < height; i++) {
+		for (var i=0; i < this.height; i++) {
 			mainBoard[i] = [];
-			for (var j=0; j<10; j++) {
+			for (var j=0; j < this.width; j++) {
 				mainBoard[i][j] = '';
 			}
 		}

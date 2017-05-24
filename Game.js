@@ -67,7 +67,7 @@ class Game {
 			var rand = Math.floor(Math.random() * 5);
 			this.currentBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
 			this.currentSpeed = this.speed;
-			console.log(this.currentSpeed);
+			// console.log(this.currentSpeed);
 		}
 		this.mainBoard.checkRowsForClear(this);
 		this.draw();

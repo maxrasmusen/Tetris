@@ -2,7 +2,7 @@ $(initOOP)
 
 function initOOP() {
 	var height = 20;
-	var game = new Game(new Board(height + 5), new Display(height));
+	var game = new Game(new Board(10, height + 5), new Display(10, height));
 	game.start();
 	
 	$(document).keypress(function(event) {
