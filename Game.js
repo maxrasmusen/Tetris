@@ -68,7 +68,7 @@ class Game {
 	scoreInc() {
 		var score = $('#score');
 		score.html(parseInt(score.html())+1);
-		if (this.speed > 100) {
+		if (this.speed > 300) {
 			this.speed -= 20;
 		}
 		return score.html();

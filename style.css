@@ -1,5 +1,6 @@
 * {
 	margin: 0px;
+	font-family: Helvetica;
 }
 li {
 	width: 30px;
@@ -69,8 +70,10 @@ body {
 #rules {
 	display: inline-block;
 	vertical-align: top;
-	margin-top: 50px;
+	margin: 50px 0px 0px 50px;
 	width: 20%;
+	border: 1px solid black;
+	padding: 10px;
 }
 
 @media screen and (max-width: 770px) {

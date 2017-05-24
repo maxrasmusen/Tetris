@@ -18,7 +18,7 @@ function initOOP() {
 
 function setUpNewGame() {
 	var score = parseInt($('#score').html());
-	if (prompt('Play Again?') === 'y') {
+	//if (prompt('Play Again?') === 'y') {
 		$('#main-game').html('')
 		var height = 20;
 		width = 10;
@@ -27,7 +27,7 @@ function setUpNewGame() {
 		window.watch(game);
 		game.start();
 		game.onStop = setUpNewGame;
-	}
+	//}
 	console.log(score);
 	console.log(parseInt($('#highscore').html())< score)
 	if (parseInt($('#highscore').html()) < score) {
