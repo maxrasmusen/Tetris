@@ -22,7 +22,9 @@ ul {
 #main-game {
 	border: solid black 1px;
 	width: 320px;
-	background-color: black;
+	/*background-color: yellow;*/
+	background-image: url('https://media.giphy.com/media/lSzQjkthGS1gc/giphy.gif');
+	background-size: cover;
 	display: inline-block;
 }
 
