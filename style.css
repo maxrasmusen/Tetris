@@ -57,6 +57,13 @@ ul {
 	margin-left: 20px;
 }
 
-p {
+#sidebar p {
 	text-align: center;
+}
+
+#rules {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 100px;
+	width: 20%;
 }
