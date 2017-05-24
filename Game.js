@@ -9,6 +9,8 @@ class Game {
 		this.speed = 1000;
 		this.currentSpeed = this.speed;
 		this.score = 0;
+		this.nextWindow;
+		this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
 	}
 
 	start() {
@@ -59,18 +61,33 @@ class Game {
 		}
 	}
 
+	addWindow(window) {
+		this.window = window;
+	}
+
+	updateWindow() {
+			// this.window = currentBlock;
+			// this.window.display.
+		this.window.setBlock(this.nextBlock);
+		this.window.draw();
+	}
+
 	frame() {
 		// console.log(this.speed);
 		if (!this.currentBlock.updatePosition(this.mainBoard)) {
 			this.mainBoard.place(this.currentBlock);
 			this.checkForLoss(this.currentBlock);
 			var rand = Math.floor(Math.random() * 5);
-			this.currentBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+			this.currentBlock = this.nextBlock;
+			this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
 			this.currentSpeed = this.speed;
 			// console.log(this.currentSpeed);
 		}
 		this.mainBoard.checkRowsForClear(this);
 		this.draw();
+		if (this.window) {
+			this.updateWindow();
+		}
 		if (!this.toStop) {
 			this.currentFrame = setTimeout(frame, this.currentSpeed, this);
 		}

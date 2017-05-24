@@ -1,5 +1,6 @@
 class Display {
-	constructor(width, height) {
+	constructor(width, height, elementName) {
+		this.elementName = elementName;
 		this.width = width;
 		this.height = height;
 		this.board = this.setUpHTMLBoard();
@@ -8,7 +9,7 @@ class Display {
 
 	setUpHTMLBoard() {
 	//creates inital HTML board. This is a bunch of html elements that are updated using the mainbBoard
-		var board = $('#main').html('');
+		var board = $(this.elementName).html('');
 		for (var i = 0; i < this.height; i++) {
 			var row = $('<ul>').attr('id', 'row-' + i);
 			board.append(row);
