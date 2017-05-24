@@ -10,6 +10,7 @@ class Game {
 		this.currentSpeed = this.speed;
 		this.score = 0;
 		this.nextWindow;
+		var rand = Math.floor(Math.random() * 5);
 		this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
 	}
 
@@ -77,9 +78,11 @@ class Game {
 		if (!this.currentBlock.updatePosition(this.mainBoard)) {
 			this.mainBoard.place(this.currentBlock);
 			this.checkForLoss(this.currentBlock);
+			
 			var rand = Math.floor(Math.random() * 5);
-			this.currentBlock = this.nextBlock;
 			this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+			
+			this.currentBlock = this.nextBlock;
 			this.currentSpeed = this.speed;
 			// console.log(this.currentSpeed);
 		}
