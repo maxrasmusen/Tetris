@@ -68,9 +68,9 @@ class Game {
 	scoreInc() {
 		var score = $('#score');
 		score.html(parseInt(score.html())+1);
-		if (this.speed > 300) {
-			this.speed -= 20;
-		}
+		// if (this.speed > 300) {
+		// 	this.speed -= 20;
+		// }
 		return score.html();
 	}
 
@@ -101,7 +101,7 @@ class Game {
 			
 			var nArray = this.nextBlock.array.slice();
 			this.currentBlock = this.nextBlock;
-			var rand = Math.floor(Math.random() * 5);
+			var rand = Math.floor(Math.random() * pieces.length);
 			this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
 			this.nextBlock.color = getColor();
 			this.currentSpeed = this.speed;

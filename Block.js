@@ -80,6 +80,27 @@ class Block {
 			return block;
 		})) {
 			this.array = rotateArrayClockwise(this.array);
+		} else if (this.checkMovement(board.board, function(block) {
+			block.x -= 1;
+			block.array = rotateArrayClockwise(block.array);
+			return block;
+		})) {
+			this.x -= 1;
+			this.array = rotateArrayClockwise(this.array);
+		} else if (this.checkMovement(board.board, function(block) {
+			block.x -= 2;
+			block.array = rotateArrayClockwise(block.array);
+			return block;
+		})) {
+			this.x -= 2;
+			this.array = rotateArrayClockwise(this.array);
+		} else if (this.checkMovement(board.board, function(block) {
+			block.x -= 3;
+			block.array = rotateArrayClockwise(block.array);
+			return block;
+		})) {
+			this.x -= 3;
+			this.array = rotateArrayClockwise(this.array);
 		}
 	}
 
