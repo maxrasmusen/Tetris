@@ -38,6 +38,7 @@ body {
 	display: inline-block;
 	margin-left: 20px;
 	/*margin-top: 50px;*/
+	box-shadow: 0px 0px 10px 0px black;
 }
 
 .background {
@@ -61,6 +62,8 @@ body {
 	background-color: black;
 	border: solid black 1px;
 	border-radius: 5px;
+	box-shadow: 0px 0px 10px 0px black;
+	margin-top:10px;
 }
 
 #sidebar {
@@ -83,10 +86,11 @@ body {
 	padding: 10px;
 	background-color: #83957B;
 	text-align: center;
+	box-shadow: 0px 0px 10px 0px #83957B;
 }
 
 .scorepanel {
-	margin: 5px;
+	margin: 10px;
 	padding: 5px;
 	color: black;
 	border-radius: 5px;
@@ -99,12 +103,14 @@ body {
 
 #panel-one {
 	border: 1px solid #FFBB97;
+	box-shadow: 0px 0px 10px 0px #FFBB97;
 	background-color: #FFBB97;
 }
 
 #panel-two {
 	border: 1px solid #D6EDCB;
 	background-color: #D6EDCB;
+	box-shadow: 0px 0px 10px 0px #D6EDCB;
 }
 
 #next-panel {
@@ -112,6 +118,7 @@ body {
 	padding: 5px;
 	border: 1px solid #A36E53;
 	background-color: #A36E53;
+	box-shadow: 0px 0px 10px 0px #A36E53;
 }
 
 #reset-button {
@@ -120,6 +127,7 @@ body {
 	border: 1px solid #99956F;
 	background-color: #99956F;
 	border-radius: 5px;
+	box-shadow: 0px 0px 10px 0px #99956F;
 }
 
 #reset-button:hover {
