@@ -57,22 +57,32 @@ function onKeyPress(event, game) {
 			game.togglePause();
 			break;
 		case 108:
-			game.currentBlock.moveRight(game.mainBoard);
+			if (game.currentFrame) {
+				game.currentBlock.moveRight(game.mainBoard);
+			}
 			break;
 		case 106: 
-			game.currentBlock.moveLeft(game.mainBoard);
+			if (game.currentFrame) {
+				game.currentBlock.moveLeft(game.mainBoard);
+			}
 			break;
 		case 111:
-			game.currentBlock.rotateClockwise(game.mainBoard);
+			if (game.currentFrame) {
+				game.currentBlock.rotateClockwise(game.mainBoard);
+			}
 			break;
-		case 117:
-			game.currentBlock.rotateAntiClockwise(game.mainBoard);
+		case 117:	
+			if (game.currentFrame) {
+				game.currentBlock.rotateAntiClockwise(game.mainBoard);
+			}
 			break;
 		case 32:
 			game.toggleSpeed();
 			break;
 		case 107:
-			game.currentBlock.reflect(game.mainBoard);
+			if (game.currentFrame) {
+				game.currentBlock.reflect(game.mainBoard);
+			}
 			break;
 		case 101:
 			game.display.wobble(game.mainBoard);
