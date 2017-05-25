@@ -32,17 +32,17 @@ class Board {
 	}
 
 	checkRowsForClear(game) {
-		var clearedAnyRows = false;
+		var clearIndex = -1;
 		for (var i=0; i < this.board.length; i++) {
 			var row = this.board[i];
 			if (row.every(function(element) {
 				return element.getContent() === 'X';
 			})) {
 				this.clearRow(i, game);
-				clearedAnyRows = true;
+				clearIndex = i;
 			}
 		}
-		return clearedAnyRows;
+		return clearIndex;
 	}
 
 	clearRow(index, game) {

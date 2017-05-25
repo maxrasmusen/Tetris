@@ -38,8 +38,9 @@ class Display {
 		}
 	}
 
-	wobble (gameBoard) {
-		for (var i=0; i < this.board.children().toArray().length; i++) {
+	wobble (gameBoard, clearIndex) {
+		console.log(clearIndex);
+		for (var i=0; i < clearIndex-5; i++) {
 			var row = this.board.children().toArray()[i];
 			for (var j=0; j < $(row).children().toArray().length; j++) {
 				var square = $(row).children().toArray()[j];

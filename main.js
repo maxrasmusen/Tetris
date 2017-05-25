@@ -82,7 +82,7 @@ function onKeyPress(event, game) {
 		case 107:
 			if (game.currentFrame) {
 				game.currentBlock.reflect(game.mainBoard);
-			}
+			}	
 			break;
 		case 101:
 			game.display.wobble(game.mainBoard);
