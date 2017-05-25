@@ -90,6 +90,11 @@ body {
 	padding: 5px;
 	color: black;
 	border-radius: 5px;
+	text-align: center;
+}
+
+.scorepanel:hover {
+	cursor: default;
 }
 
 #panel-one {
@@ -107,6 +112,18 @@ body {
 	padding: 5px;
 	border: 1px solid #A36E53;
 	background-color: #A36E53;
+}
+
+#reset-button {
+	margin: 20px 5px 5px 5px; 
+	padding :5px;
+	border: 1px solid #99956F;
+	background-color: #99956F;
+	border-radius: 5px;
+}
+
+#reset-button:hover {
+	opacity: 0.75;
 }
 
 #rules h2 {
