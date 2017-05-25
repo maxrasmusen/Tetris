@@ -13,6 +13,8 @@ function initOOP() {
 		if (game) {
 			console.log('stopping game')
 			game.stop();
+			setUpNewGame();
+
 		}
 	});
 
@@ -23,7 +25,12 @@ function initOOP() {
 	setUpNewGame();
 }
 
+function showDeathScreen() {
+	$('#death-screen').css('display', 'inline');
+}
+
 function setUpNewGame() {
+	$('#death-screen').css('display', 'none');
 	var score = parseInt($('#score').html());
 	$('#score').html(0);
 	//if (prompt('Play Again?') === 'y') {
@@ -34,7 +41,7 @@ function setUpNewGame() {
 		var window = setUpNextWindow();
 		window.watch(game);
 		game.start();
-		game.onStop = setUpNewGame;
+		game.onStop = showDeathScreen;
 	//}
 	if (parseInt($('#highscore').html()) < score) {
 		$(highscore).html(score);
@@ -52,6 +59,7 @@ function onKeyPress(event, game) {
 	switch(event.which) {
 		case 113: 
 			game.stop();
+			setUpNewGame();
 			break;
 		case 119:
 			game.togglePause();
@@ -77,6 +85,7 @@ function onKeyPress(event, game) {
 			}
 			break;
 		case 32:
+			event.preventDefault();
 			game.toggleSpeed();
 			break;
 		case 107:
