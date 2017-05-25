@@ -9,6 +9,13 @@ function initOOP() {
 		game.draw();
 	});
 
+	$('#reset-button').click(function() {
+		if (game) {
+			console.log('stopping game')
+			game.stop();
+		}
+	});
+
 	// var window = setUpNextWindow();
 	// window.watch(game);
 	// game.start();
@@ -18,6 +25,7 @@ function initOOP() {
 
 function setUpNewGame() {
 	var score = parseInt($('#score').html());
+	$('#score').html(0);
 	//if (prompt('Play Again?') === 'y') {
 		$('#main-game').html('')
 		var height = 20;

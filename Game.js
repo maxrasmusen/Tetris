@@ -74,9 +74,9 @@ class Game {
 		return score.html();
 	}
 
-	checkForLoss(block) {
-		if (block.y <= 5) {
-			alert('You lost with a score of: ' + $('#score').html());
+	checkForLoss() {
+		if (this.currentBlock.y <= 5) {
+			//alert('You lost with a score of: ' + $('#score').html());
 			this.stop();
 		}
 	}
@@ -97,7 +97,7 @@ class Game {
 		if (!this.currentBlock.updatePosition(this.mainBoard)) {
 			//change block
 			this.mainBoard.place(this.currentBlock);
-			this.checkForLoss(this.currentBlock);
+			this.checkForLoss();
 			
 			var nArray = this.nextBlock.array.slice();
 			this.currentBlock = this.nextBlock;
