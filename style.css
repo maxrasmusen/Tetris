@@ -8,6 +8,7 @@ li {
 	border: solid grey 1px;
 	display: table-cell;
 	opacity: 0.85;
+	/*transform: rotate(7deg);*/
 }
 
 ul {

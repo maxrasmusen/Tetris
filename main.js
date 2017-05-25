@@ -28,8 +28,6 @@ function setUpNewGame() {
 		game.start();
 		game.onStop = setUpNewGame;
 	//}
-	console.log(score);
-	console.log(parseInt($('#highscore').html())< score)
 	if (parseInt($('#highscore').html()) < score) {
 		$(highscore).html(score);
 	}
@@ -67,6 +65,9 @@ function onKeyPress(event, game) {
 			break;
 		case 107:
 			game.currentBlock.reflect(game.mainBoard);
+			break;
+		case 101:
+			game.display.wobble(game.mainBoard);
 			break;
 		default: 
 			console.log(event.which);

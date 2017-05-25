@@ -38,4 +38,31 @@ class Display {
 		}
 	}
 
+	wobble (gameBoard) {
+		for (var i=0; i < this.board.children().toArray().length; i++) {
+			var row = this.board.children().toArray()[i];
+			for (var j=0; j < $(row).children().toArray().length; j++) {
+				var square = $(row).children().toArray()[j];
+				var gameSquare = gameBoard.board[i + 5][j];
+				if (gameSquare.getType() === 'terrain') {
+					var rand = Math.floor(Math.random() * 9)+6;
+					var dist = Math.floor(Math.random()*3) + 3;
+					wobbleDiv(square, rand, dist);
+				}
+			}
+		}
+	}
+}
+
+function wobbleDiv(square, count, dist) {
+		// console.log('Wobble: ' + count + ', ' + dist);
+		if (count <= 0) {
+			$(square).css('transform', 'rotate(0deg)');
+		} else if (count % 2 === 0) {
+			$(square).css('transform', 'rotate(' + dist + 'deg)');
+			setTimeout(wobbleDiv, 100, square, count - 1, dist);
+		} else {
+			$(square).css('transform', 'rotate(-' + dist + 'deg)');
+			setTimeout(wobbleDiv, 100, square, count - 1, dist);
+	}
 }

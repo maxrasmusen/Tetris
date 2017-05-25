@@ -110,7 +110,9 @@ class Game {
 			}
 			// console.log(this.currentSpeed);
 		}
-		this.mainBoard.checkRowsForClear(this);
+		if (this.mainBoard.checkRowsForClear(this)) {
+			this.display.wobble(this.mainBoard);
+		}
 		this.draw();
 		
 		//need this to prevent the 
