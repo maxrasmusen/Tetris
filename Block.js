@@ -105,9 +105,33 @@ class Block {
 	}
 
 	rotateAntiClockwise(board) {
-		this.rotateClockwise(board);
-		this.rotateClockwise(board);
-		this.rotateClockwise(board);
+		if (this.checkMovement(board.board, function(block) {
+			block.array = rotateArrayAntiClockwise(block.array);
+			return block;
+		})) {
+			this.array = rotateArrayAntiClockwise(this.array);
+		} else if (this.checkMovement(board.board, function(block) {
+			block.x -=1;
+			block.array = rotateArrayAntiClockwise(block.array);
+			return block;
+		})) {
+			this.x -=1;
+			this.array = rotateArrayAntiClockwise(this.array);
+		} else if (this.checkMovement(board.board, function(block) {
+			block.array = rotateArrayAntiClockwise(block.array);
+			block.x -=2;
+			return block;
+		})) {
+			this.x -=2;
+			this.array = rotateArrayAntiClockwise(this.array);
+		} else if (this.checkMovement(board.board, function(block) {
+			block.array = rotateArrayAntiClockwise(block.array);
+			block.x -=3;
+			return block;
+		})) {
+			this.x -=3;
+			this.array = rotateArrayAntiClockwise(this.array);
+		}
 	}
 
 	reflect(board) {

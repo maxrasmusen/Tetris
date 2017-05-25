@@ -30,6 +30,25 @@ function rotateArrayClockwise(array) {
 	return newArray;
 }
 
+function rotateArrayAntiClockwise(array) {
+	var newArray = [];
+	for (var i = 0; i < array[0].length; i ++) {
+		newArray[i] = [];
+		for (var j = 0; j < array.length; j++) {
+			// console.log(i + ', ' + j)
+			newArray[i][j] = '';
+		}
+	}
+
+	for (var i=0; i < array.length; i++) {
+		for (var j=0; j < array[0].length; j++) {
+			newArray[newArray.length-1-j][i] = array[i][j];
+		}
+	}
+
+	return newArray;
+}
+
 function overlayArray(block, board) {
 	// translates the block array onto the board. 
 	// console.log(x + ', ' + y)
