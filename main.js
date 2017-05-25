@@ -42,8 +42,8 @@ function setUpNewGame() {
 }
 
 function setUpNextWindow () {
-	var display = new Display(5, 5, '#next-window');
-	var board = new Board(5, 10);
+	var display = new Display(5, 6, '#next-window');
+	var board = new Board(5, 11);
 	display.drawToScreen(board);
 	return new Window(board, display);
 }
