@@ -40,7 +40,7 @@ function setUpNewGame() {
 		game = new Game(new Board(width, height + 5), new Display(width, height, '#main-game'));
 		var window = setUpNextWindow();
 		window.watch(game);
-		// game.setColors(['#111111', ['#FFFFFF']])
+		// game.setColors(['#111111', []])
 
 		game.start();
 		game.onStop = showDeathScreen;
