@@ -1,23 +1,22 @@
 class Game {
 	constructor(mainBoard, display) {
+		this.colors = ['#FFBB97', '#FFA5A0', '#FECDB6', '#F1EDBC', '#D6EDCB', '#A36E53', '#A35D59', '#A27D6A', '#99956F', '#83957B'];
+		this.colorCounter = 0;
 		this.mainBoard = mainBoard;
 		this.display = display;
-		var rand = Math.floor(Math.random() * 5);
-		this.currentBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+		this.currentBlock;
+		this.nextBlock;
 		this.toStop = false;
 		var currentFrame;
 		this.speed = 1000;
 		this.currentSpeed = this.speed;
 		this.score = 0;
 		this.nextWindow;
-		rand = Math.floor(Math.random() * 5);
-		this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
-		this.currentBlock.color = getColor();
-		this.nextBlock.color = getColor();
 		this.onStop = function() {
 						console.log('stop');
 						return this.score
 					}
+		
 	}
 
 	togglePause() {
@@ -33,6 +32,12 @@ class Game {
 	}
 
 	start() {
+		var rand = Math.floor(Math.random() * 5);
+		this.currentBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+		rand = Math.floor(Math.random() * 5);
+		this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
+		this.currentBlock.color = this.getColor();
+		this.nextBlock.color = this.getColor();
 		if (this.window) {
 			this.updateWindow();
 		}
@@ -92,6 +97,21 @@ class Game {
 		this.window.draw();
 	}
 
+
+	getColor() {
+		if (this.colorCounter >= this.colors.length-1) {
+			this.colorCounter = 0;
+		} else {
+			this.colorCounter ++;
+		}
+		return this.colors[this.colorCounter];
+	} 
+
+	setColors(newColors) {
+		this.colors = newColors;
+		console.log(newColors);
+	}
+
 	frame() {
 		// console.log(this.speed);
 		if (!this.currentBlock.updatePosition(this.mainBoard)) {
@@ -103,7 +123,7 @@ class Game {
 			this.currentBlock = this.nextBlock;
 			var rand = Math.floor(Math.random() * pieces.length);
 			this.nextBlock = new Block(3, 5 - pieces[rand].length, pieces[rand]);
-			this.nextBlock.color = getColor();
+			this.nextBlock.color = this.getColor();
 			this.currentSpeed = this.speed;
 			if (this.window) {
 				this.updateWindow();
