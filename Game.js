@@ -65,6 +65,10 @@ class Game {
 	toggleSpeed() {
 		if (this.currentSpeed === this.speed) {
 			this.currentSpeed = 100;
+			if (!this.toStop) {
+				clearInterval(this.currentFrame);
+				this.currentFrame = setTimeout(frame, this.currentSpeed, this);
+			}
 		} else {
 			this.currentSpeed = this.speed;
 		}
