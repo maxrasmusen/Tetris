@@ -6,9 +6,23 @@ Open index.html in browser.
 Make sure javascript is enabled. 
 
 ##To add tetris to a project. 
-Link all scripts in Tetris directory on your page. `Window.js` is not necessary if you do not want a 'next' window. 
+Link all scripts in Tetris directory on your page. 
 
-Make sure you have jQuery installed. 
+~~~
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="Tetris/Game.js"></script>
+  <script type="text/javascript" src="Tetris/Square.js"></script>
+  <script type="text/javascript" src="Tetris/Window.js"></script>
+  <script type="text/javascript" src="Tetris/Board.js"></script>
+  <script type="text/javascript" src="Tetris/Display.js"></script>
+  <script type="text/javascript" src="Tetris/Block.js"></script>
+  <script type="text/javascript" src="Tetris/arrayHelpers.js"></script>
+  <script type="text/javascript" src="Tetris/templates.js"></script>
+  <script type="text/javascript" src="Tetris/main.js"></script>
+~~~
 
 Link to the project by creating the element 
 `<div id='main-game'><\div>`
