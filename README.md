@@ -121,3 +121,6 @@ and adding:
 }
 ~~~
 to the stylesheet. 
+
+To add a score panel add an element with `id='score'`
+To add a high score panel, add an element with `id=highscore'`
